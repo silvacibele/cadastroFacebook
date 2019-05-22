@@ -1,17 +1,15 @@
-package PuroESimples;
+package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pageObjects.PO;
 
 import java.util.concurrent.TimeUnit;
-
-import static com.sun.jmx.snmp.ThreadContext.contains;
 
 public class CadastroFace {
 
@@ -37,16 +35,17 @@ public class CadastroFace {
         driver.get(urlFace);
     }
 
-
     @Test
-    public void cadastrarUserFace(){
+    public void cadastrarUserFace() {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         pageObjects = new PO(driver);
         pageObjects.cadastrarUsuario(nome, sobreNome, emailOuCel, senha, sexo, dia, mes, ano);
-        String validaMsgErro = pageObjects.msgErro.getText();
-        Assert.assertEquals(validaMsgErro,validaMsgErro);
+        Assert.assertNotNull(pageObjects.msgCadastro);
     }
 
-
+    @AfterClass
+    public void tearDown(){
+        driver.quit();
+    }
 
 }

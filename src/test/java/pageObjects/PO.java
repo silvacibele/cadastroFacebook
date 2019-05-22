@@ -1,4 +1,4 @@
-package PuroESimples;
+package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,8 +40,8 @@ public class PO {
     @FindBy(name = "reg_email_confirmation__")
     public WebElement txtConfirmaEmail;
 
-    @FindBy(id = "reg_error_inner")
-    public WebElement msgErro;
+    @FindBy(className = "mbs _52lq fsl fwb fcb")
+    public WebElement msgCadastro;
 
 
 
